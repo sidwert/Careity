@@ -6,18 +6,23 @@
     <link rel="stylesheet" href="jquery.mobile-1.4.3.min.css" />
     <script src="jquery-1.11.1.min.js"></script>
     <script src="jquery.mobile-1.4.3.min.js"></script>
+	
     <style>
+	body{
+		margin-right:20px; 
+		margin-left: 20px;
+	}
         #homepage {
           background: white;  
 
         }
                
         #EndQuizPage {
-            background: #CCFFFF
+            background: white;
         }
         
         #SearchPage {
-            background: #CCFFFF
+            background: white;
         }
 		
 		
@@ -87,6 +92,12 @@
 			text-align: center;
 			font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 		}
+		#logo{
+			margin-left:500px;
+		}
+		#slides {
+			display:none;
+    }
 		
     </style>
     
@@ -323,7 +334,7 @@
         
         }
 		
-		function Signupstuff (Username, Password){
+	/*	function Signupstuff (Username, Password){
 		this.Username = Username;
 		this.Password = Password;
 		
@@ -340,7 +351,39 @@
 				console.log(user);
 			}
 		}
-        var user = new Signupstuff($("#username").val(),$("#password").val() );
+        var user = new Signupstuff($("#username").val(),$("#password").val() );*/
+		
+		var x = $("#pass").val();
+		console.log("no");
+			
+		var chname = [];
+		var chid = [];
+		var chlink = [];
+		function passwordstuff(){
+			x = $("#pass").val();
+			console.log(x);
+			if (x == "charity"){
+				console.log("x");
+				$("#adminform").hide();
+				$("#adminpage").show();
+			}
+			
+		}
+		
+			
+		function SubmitChar () {
+		chname.push($("#cname").val());
+		console.log(chname);
+		chlink.push($("#clink").val());
+		console.log(chlink);
+		chid.push($("#cid").val());
+			for(i=0; i<chname.length; i++){
+				var charity = {Name:chname[i], id:chid[i], link:chlink[i]}
+			}
+	
+		ListofCharities.push(charity);
+			console.log(ListofCharities);
+		}
 		
 		
 
@@ -352,7 +395,7 @@
    <div data-role="page"id="loadpage">
 		<div id= "topper">
 		<hr>
-		<h1 id="loadhead"> Care-Ity </h1>
+		<a rel="nofollow" id="logo" ><img src="http://www.logomaker.com/logo-images/b4b4454ad9771b5d.gif"/></a>
 		<h5 class="sub"> We Care About Charity </h5>
 		<hr>
 		<hr>
@@ -375,6 +418,7 @@
 		
 		<a href = "#SearchPage" data-role = "button" class= "button"> Search Charities </a>
 		<a href = "#LoginPage" data-role = "button" class= "button"> Sign Up </a>
+		<a href = "#adminform" data-role = "button" class= "button"> Admin </a>
 		
 		<br>
 		</div>
@@ -390,10 +434,14 @@
 
    <div data-role="page"id="homepage">
 
-        <!--div data-role="header" class="head" data-role="search"-->
-            <h1 id="titlez">Care-Ity</h1>
-        <!--/div-->
+      <div id= "topper">
 		<hr>
+		<a rel="nofollow" id="logo" ><img src="http://www.logomaker.com/logo-images/b4b4454ad9771b5d.gif"/></a>
+		<h5 class="sub"> We Care About Charity </h5>
+		<hr>
+		<hr>
+		</div>
+		
                
         <h2>Take The Quiz to Find the Right Charities for You</h2>
 		<h6>Just Click Yes or No to Get Started!</h6>
@@ -554,10 +602,18 @@
     
     
     <div data-role="page"id="SearchPage">
+		<div id= "topper">
+		<hr>
+		<a rel="nofollow" id="logo" ><img src="http://www.logomaker.com/logo-images/b4b4454ad9771b5d.gif"/></a>
+		<h5 class="sub"> We Care About Charity </h5>
+		<hr>
+		<hr>
+		</div>
 
-        <div data-role="header" >
-            <h1>Traumatized by quizzes? Search for a charity instead!!</h1>
-        </div>
+        
+            <h1>Quizzes too reminiscent of High School? Search our List Instead</h1>
+			<br>
+     
 
         <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search charities..." data-inset="true">
         <li class="health"><a href="http://www.redcross.org/">American Red Cross</a></li>
@@ -579,6 +635,15 @@
     </div>
     
     <div data-role="page"id="EndQuizPage">
+	
+	<div id= "topper">
+		<hr>
+		<a rel="nofollow" id="logo" ><img src="http://www.logomaker.com/logo-images/b4b4454ad9771b5d.gif"/></a>
+		<h5 class="sub"> We Care About Charity </h5>
+		<hr>
+		<hr>
+		</div>
+	
 
         <div data-role="header" >
             <h1>Your Charities</h1>
@@ -588,5 +653,31 @@
         </ul>
         
     </div>
+	
+	<div data-role="page"id="adminform">
+	
+			<h1>Password</h1>
+			<input type="password" name="pwd" value="" id="pass">
+			<button type="button" onclick="passwordstuff()">Submit</button>
+		
+		
+ </div>
+ 
+<div data-role="page"id="adminpage">
+ <h1>Hi! Add a new charity.</h1>
+ 
+ <h2>Charity Name</h2>
+ <input type="text" value="" id="cname" value="">
+ <h2>Charity Link</h2>
+ <input type="text" value="" id="clink" value="">
+ <h2>Charity ID</h2>
+ <input type="text" value="" id="cid" value="">
+ 
+ <button type="button" onclick="SubmitChar()">Add</button>
+ <a href = "#loadpage" data-role = "button" class= "button"> Admin </a>
+ 
+ 
+ 
+</div>
 </body>
 </html>
